@@ -1,0 +1,7 @@
+.gocache/
+bin/
+dist/
+airesume
+*.test
+coverage.out
+record
