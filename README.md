@@ -19,7 +19,23 @@ Unified local session launcher for Codex and Claude Code.
 - Adapter interface for future AI coding tools.
 - Placeholder summary provider interface for future AI API summaries.
 
-## Build
+## Installation
+
+Install the latest version with Go:
+
+```bash
+go install github.com/BuerH/airesume/cmd/airesume@latest
+```
+
+Or install a specific release:
+
+```bash
+go install github.com/BuerH/airesume/cmd/airesume@v0.1.0
+```
+
+Prebuilt binaries are attached to GitHub Releases for Linux, macOS, and Windows.
+
+## Build From Source
 
 ```bash
 go build -o bin/airesume ./cmd/airesume
@@ -95,17 +111,34 @@ Future adapters can be added to `DefaultRegistry()`.
 
 ## Release
 
-The module path is:
+This section is for maintainers.
+
+The Go module path is:
 
 ```go
 module github.com/BuerH/airesume
 ```
 
-To publish a release, commit the changes and tag:
+Create the GitHub repository and push the default branch first:
+
+```bash
+git remote add origin git@github.com:BuerH/airesume.git
+git branch -M main
+git push -u origin main
+```
+
+Run checks locally:
+
+```bash
+make check
+make release-snapshot VERSION=v0.1.0
+```
+
+Publish a release by pushing a version tag:
 
 ```bash
 git tag v0.1.0
 git push origin v0.1.0
 ```
 
-The release workflow builds Linux, macOS, and Windows binaries and publishes checksums.
+The release workflow builds Linux, macOS, and Windows binaries, then uploads all artifacts and `checksums.txt` to the GitHub Release.
